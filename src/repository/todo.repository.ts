@@ -47,3 +47,16 @@ export const getTodoById = async (id: number): Promise<Todo | null> => {
 
     return result.rows[0] ?? null
 }
+
+export const deleteTodo = async(id: number): Promise<Todo> => {
+    const result = await pool.query(
+        `
+            delete from todos
+            where id = $1
+            returning *;   
+        `,
+        [id]
+    )
+
+    return result.rows[0] ?? null;
+}

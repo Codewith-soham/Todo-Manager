@@ -51,3 +51,26 @@ export const getTodoById = async (
         message: "Todo fetched successfully"
     })
 }
+
+export const deleteTodo = async (
+    request: FastifyRequest,
+    reply: FastifyReply
+) => {
+    const { id } = request.params as { id: String }
+
+    const todo = await todoService.deleteTodo(Number (id))
+
+    if(!todo){
+        return reply.status(404).send({
+            success: false,
+            message: "Todo not found"
+        })
+    }
+
+    return reply.status(200).send({
+        success: true,
+        data: todo,
+        message: "Todo fetched successfully"
+    }
+    )
+}

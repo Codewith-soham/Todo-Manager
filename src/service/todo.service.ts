@@ -18,3 +18,7 @@ export const getAllTodos = async (): Promise<Todo[]> => {
 export const getTodoById = async(id: number): Promise<Todo | null > => {
     return todoRepository.getTodoById(id)
 }
+
+export const deleteTodo = async(id: number): Promise<Todo> => {
+    return todoRepository.deleteTodo(id)
+}
